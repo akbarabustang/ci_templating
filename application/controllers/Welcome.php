@@ -8,13 +8,21 @@ class Welcome extends CI_Controller {
 	}
 
 	public function home(){
-		$this->load->view('templates/index');
+		$data['header'] = 'templates/header';
+		$data['navbar'] = 'templates/navbar';
+		$data['contents'] = 'home';
+		$data['footer'] = 'templates/footer';
+		$this->load->view('templates/index', $data);
 	}
 
 	public function index()
 	{
+		$data['header'] = 'templates/header';
+		$data['navbar'] = 'templates/navbar';
+		$data['contents'] = 'siswa_list';
+		$data['footer'] = 'templates/footer';
 		$data['siswa_data'] = $this->Siswa_model->get_siswa();
-		$this->load->view('siswa_list', $data);
+		$this->load->view('templates/index', $data);
 	}
 
 	public function create(){
@@ -22,7 +30,12 @@ class Welcome extends CI_Controller {
 				$this->Siswa_model->insert_siswa();
 				redirect('welcome/index');
 		}
-		$this->load->view('siswa_tambah');	
+
+		$data['header'] = 'templates/header';
+		$data['navbar'] = 'templates/navbar';
+		$data['contents'] = 'siswa_tambah';
+		$data['footer'] = 'templates/footer';
+		$this->load->view('templates/index', $data);	
 
 	}
 
@@ -31,9 +44,14 @@ class Welcome extends CI_Controller {
 			$this->Siswa_model->edit_siswa();
 			redirect('welcome/index');
 		}
+
 		$id = $this->uri->segment(3);
+		$data['header'] = 'templates/header';
+		$data['navbar'] = 'templates/navbar';
+		$data['contents'] = 'siswa_edit';
+		$data['footer'] = 'templates/footer';
 		$data['siswa'] = $this->Siswa_model->getById($id);
-		$this->load->view('siswa_edit', $data);
+		$this->load->view('templates/index', $data);
 	}
 
 	public function delete(){

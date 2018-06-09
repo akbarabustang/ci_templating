@@ -1,6 +1,6 @@
 <h3>Siswa List</h3>
 <a href="<?php echo site_url() ?>/welcome/create" class="btn btn-primary">Tambah Data</a><br><br>
-<table class="table table-bordered" >
+<table class="table table-bordered " >
     <tr>
         <th>no</th>
         <th>nis siswa</th>
